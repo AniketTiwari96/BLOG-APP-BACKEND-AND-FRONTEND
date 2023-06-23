@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Images</title>
+  <style>
+    *{
+      margin: 0px;
+    }
+    table {
+      width: 90%;
+      margin: auto;
+      border-collapse: collapse;
+      margin-top: 50px;
+    }
+    tr th{
+      font-size: 20px;
+    }
+    
+    th, td {
+      padding: 4px;
+      /* text-align: left; */
+      border-bottom: 2px solid #ddd;
+    }
+    td{
+        text-align: center;
+        margin-left: 100px;  
+    }
+    td img{
+        width: 100px;
+        height:auto;
+        margin: 20px;
+
+    }
+    td,embed{
+        margin: 20px;
+        width: 100px;
+        height:110px;
+    }
+    h1{
+        text-align: center;
+    }
+    .anchorbox {
+      line-height: 70px;
+      background-color: #19708a;
+      text-align: center;
+  
+    }
+    .signup-btn{
+            border: 1px solid grey;
+            padding: 8px;
+            text-decoration: none;
+            background-color:yellow;
+            font-size: 18px;
+            box-sizing: border-box;
+    }
+    .signup-btn:hover{
+            border: 1px solid grey;
+            background-color:rgb(14, 220, 243);
+    }
+
+    tr th{
+            padding: 10px;
+            font-size: 25px;
+            border: 2px solid grey;
+        }
+        td{
+            text-align: center;
+            border: 2px solid grey;
+        }
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+  </style>
+</head>
+<body>
+    <div class="anchorbox">
+      
+        <a class="signup-btn" class="ancor" href="http://localhost:4000/homepage">Home page</a>
+        <a class="signup-btn" href="http://localhost:4000/register">register</a>
+        <a class="signup-btn" href="http://localhost:4000/login">login</a>
+        <a class="signup-btn" href="http://localhost:4000/logout">log-out</a>
+        <a class="signup-btn" href="http://localhost:4000/uploadImageFile">Upload Post</a>
+        <a class="signup-btn" href="http://localhost:4000/updatedata">Update Profile</a>
+        <a class="signup-btn" href="http://localhost:4000/readData">Show User Data</a>
+        <a class="signup-btn" href="http://localhost:4000/likedislike">Like/Dislike</a>
+        <a class="signup-btn" href="http://localhost:4000/seelikeDislike">See like dislike</a>
+        <a class="signup-btn" href="http://localhost:4000/chatpage">Chating</a>
+
+    </div>
+ 
+    <h1>Blog Posts</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>User ID</th>
+          <th>Title</th>
+          <th>Post</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% posts.forEach(function(post) { %>
+          <tr>
+            <td><%= post.id %></td>
+            <td><%= post.userId %></td>
+            <td><%= post.titale %></td>
+            <td>
+              <% if (post.UserPost) { %>
+                <% if (post.UserPost.endsWith('.jpg') || post.UserPost.endsWith('.jpeg') || post.UserPost.endsWith('.png') || post.UserPost.endsWith('.gif')) { %>
+                  <img src="<%= post.UserPost %>" alt="Image">
+                <% } else if (post.UserPost.endsWith('.pdf')) { %>
+                  <embed src="<%= post.UserPost %>" type="application/pdf" width="100%" height="500px" />
+                <% } else { %>
+                  <p>File type not supported.</p>
+                <% } %>
+              <% } %>
+            </td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    
+</body>
+    
+
